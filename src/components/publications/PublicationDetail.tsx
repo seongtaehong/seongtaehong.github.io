@@ -43,7 +43,7 @@ export default function PublicationDetail({ publication, motivation }: Publicati
             {publication.authors.map((author, index) => (
               <span key={`${author.name}-${index}`}>
                 <span className="whitespace-nowrap">
-                  {author.name}
+                  <span className={author.isHighlighted ? 'font-semibold text-[#3976a3] dark:text-[#80b9df] underline underline-offset-2' : ''}>{author.name}</span>
                   {author.isCoAuthor && (
                     <sup>*</sup>
                   )}

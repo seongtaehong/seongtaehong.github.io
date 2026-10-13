@@ -198,7 +198,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                                         {pub.authors.map((author, idx) => (
                                             <span key={idx}>
                                                 <span className="whitespace-nowrap">
-                                                  {author.name}
+                                                  <span className={author.isHighlighted ? 'font-semibold text-[#3976a3] dark:text-[#80b9df] underline underline-offset-2' : ''}>{author.name}</span>
                                                   {author.isCoAuthor && (
                                                       <sup>*</sup>
                                                   )}
