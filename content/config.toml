@@ -1,0 +1,50 @@
+[site]
+title = "Seongtae Hong"
+description = "Academic homepage of Seongtae Hong, a Ph.D. student at Korea University."
+favicon = "/favicon.svg"
+last_updated = "October 13, 2026"
+
+[author]
+name = "Seongtae Hong"
+title = "Ph.D. Student"
+institution = "Korea University"
+avatar = "/bio.jpg"
+
+[social]
+email = "ghdchlwls123@korea.ac.kr"
+location = "Seoul, Republic of Korea"
+google_scholar = "https://scholar.google.com/citations?user=6uU-QJAAAAAJ&hl=en"
+acl_anthology = "https://aclanthology.org/people/seongtae-hong/"
+linkedin = "https://www.linkedin.com/in/tate-hong-nlp/"
+huggingface = "https://huggingface.co/hongst"
+
+[features]
+enable_likes = false
+enable_one_page_mode = false
+
+[i18n]
+enabled = false
+locales = ["en"]
+default_locale = "en"
+mode = "fixed"
+fixed_locale = "en"
+persist = false
+switcher = false
+
+[[navigation]]
+title = "About"
+type = "page"
+target = "about"
+href = "/"
+
+[[navigation]]
+title = "Publications"
+type = "section"
+target = "publications"
+href = "/#publications"
+
+[[navigation]]
+title = "Models"
+type = "section"
+target = "models"
+href = "/#models"

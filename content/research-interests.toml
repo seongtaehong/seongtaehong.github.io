@@ -1,0 +1,13 @@
+intro = "Beyond individual models or benchmarks, these are the questions that keep guiding my research."
+
+[[interests]]
+title = "Information Access Beyond Language Barriers"
+content = "Why should the language of a question determine the quality of the answer? I study multilingual and cross-lingual retrieval, shared embedding spaces, and sparse and dense retrievers to provide reliable access to knowledge across languages and resource levels."
+
+[[interests]]
+title = "Learning Across Languages with Less Data"
+content = "Models should not have to relearn the same capability from scratch in every language. I study data-efficient language transfer through alignment, model merging, code-switching, and representation transfer while preserving what a model already knows."
+
+[[interests]]
+title = "LLMs That Know When and How to Think"
+content = "AI should know when to retrieve evidence, when to reason, and when a short answer is enough. I connect retrieval-augmented generation, adaptive reasoning, and representation diagnostics to build systems that are accurate, efficient, and dependable."

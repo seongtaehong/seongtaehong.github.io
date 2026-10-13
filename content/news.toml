@@ -1,0 +1,39 @@
+[[news]]
+date = "2026-09"
+content = "Our paper MLAIRE is accepted to **NeurIPS 2026 E&D**!"
+
+[[news]]
+date = "2026-09"
+content = "Our paper Skin-Deep is accepted to **AACL-IJCNLP 2026 Findings**!"
+
+[[news]]
+date = "2026-08"
+content = "4 papers accepted to **EMNLP 2026**: 2 Main (1 oral) and 2 Findings."
+
+[[news]]
+date = "2026-08"
+content = "Our paper on trainable prefix tokens for retrieval embeddings is accepted to **CIKM 2026**!"
+
+[[news]]
+date = "2026-07"
+content = "We released [LAMAR-600m](https://huggingface.co/nlpai-lab/LAMAR-600m), our multilingual reranker, with its [paper](/publications/2026-lamar-open-language-aware-multilingual-alignment-reranker/)."
+
+[[news]]
+date = "2026-07"
+content = "2 papers accepted to **ACL 2026**, plus 2 at the MeLLM Workshop."
+
+[[news]]
+date = "2026-04"
+content = "Our paper [Beyond Hard Negatives](/publications/2026-beyond-hard-negatives-importance-score-distribution/) is accepted to **SIGIR 2026**!"
+
+[[news]]
+date = "2026-03"
+content = "Our paper on [cross-lingual retrieval alignment](/publications/2026-improving-semantic-proximity-english-centric-information/) is accepted to **ICLR 2026**!"
+
+[[news]]
+date = "2025-11"
+content = "Our paper is accepted to **EMNLP 2025**!"
+
+[[news]]
+date = "2025-07"
+content = "4 papers accepted to **ACL 2025** across Main, Findings, Industry, and Student Research Workshop."

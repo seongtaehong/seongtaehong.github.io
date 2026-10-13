@@ -1,0 +1,31 @@
+type = "about"
+title = "About"
+
+[[sections]]
+id = "research-interests"
+type = "interests"
+source = "research.md"
+title = "Research"
+
+[[sections]]
+id = "news"
+type = "list"
+title = "News"
+source = "news.toml"
+
+[[sections]]
+id = "publications"
+type = "publications"
+title = "Publications"
+
+[[sections]]
+id = "models"
+type = "models"
+source = "models.toml"
+title = "Models"
+
+[[sections]]
+id = "academic-activities"
+type = "markdown"
+source = "academic-activities.md"
+title = "Academic Activities"

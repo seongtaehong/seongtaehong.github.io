@@ -1,0 +1,43 @@
+[[models]]
+name = "LAMAR-600m"
+repository = "nlpai-lab/LAMAR-600m"
+url = "https://huggingface.co/nlpai-lab/LAMAR-600m"
+task = "Text Ranking"
+description = "A language-aware multilingual cross-encoder reranker trained for semantic relevance and query–document language coherence."
+parameters = "600M"
+languages = "51 languages"
+license = "MIT"
+tags = ["multilingual", "cross-lingual", "reranker"]
+
+[[models]]
+name = "RenderRank-2B"
+repository = "nlpai-lab/RenderRank-2B"
+url = "https://huggingface.co/nlpai-lab/RenderRank-2B"
+task = "Text Ranking"
+description = "A pairwise document reranker that renders text as compact visual tokens to handle more content within a fixed context budget."
+parameters = "2B"
+languages = "English"
+license = "Apache-2.0"
+tags = ["visual tokens", "long documents", "reranker"]
+
+[[models]]
+name = "MixLID"
+repository = "nlpai-lab/MixLID"
+url = "https://huggingface.co/nlpai-lab/MixLID"
+task = "Token Classification"
+description = "A token-level language identification model for monolingual and mixed-language text across 111 language labels."
+parameters = "mmBERT-small"
+languages = "111 labels"
+license = "MIT"
+tags = ["language ID", "code-switching", "multilingual"]
+
+[[models]]
+name = "KURE-Reranker-nano"
+repository = "nlpai-lab/KURE-Reranker-nano"
+url = "https://huggingface.co/nlpai-lab/KURE-Reranker-nano"
+task = "Text Ranking"
+description = "A lightweight Korean–English cross-encoder reranker built for strong retrieval quality with efficient inference."
+parameters = "149M"
+languages = "Korean · English"
+license = "Apache-2.0"
+tags = ["Korean", "cross-encoder", "reranker"]
