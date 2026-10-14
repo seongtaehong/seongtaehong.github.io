@@ -2,16 +2,16 @@ type = "about"
 title = "About"
 
 [[sections]]
-id = "research-interests"
-type = "interests"
-source = "research.md"
-title = "Research"
-
-[[sections]]
 id = "news"
 type = "list"
 title = "News"
 source = "news.toml"
+
+[[sections]]
+id = "research-interests"
+type = "interests"
+source = "research.md"
+title = "Research"
 
 [[sections]]
 id = "publications"

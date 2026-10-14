@@ -3,7 +3,9 @@
 import Profile from '@/components/home/Profile';
 import About from '@/components/home/About';
 import News, { NewsItem } from '@/components/home/News';
-import ResearchInterests from '@/components/home/ResearchInterests';
+import ResearchFlow from '@/components/home/ResearchFlow';
+import { useState } from 'react';
+import { researchTopics } from '@/lib/researchTopics';
 import Models, { type ModelItem } from '@/components/home/Models';
 import PublicationsList from '@/components/publications/PublicationsList';
 import TextPage from '@/components/pages/TextPage';
@@ -47,6 +49,7 @@ interface HomePageClientProps {
 }
 
 export default function HomePageClient({ dataByLocale, defaultLocale }: HomePageClientProps) {
+  const [researchTopicId, setResearchTopicId] = useState<string | null>(null);
   const locale = useLocaleStore((state) => state.locale);
   const fallback = dataByLocale[defaultLocale] || Object.values(dataByLocale)[0];
   const data = dataByLocale[locale] || fallback;
@@ -54,6 +57,17 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
   if (!data) {
     return null;
   }
+
+  const allPublications = data.pagesToShow.flatMap(page => page.type === 'publication' ? page.publications : page.type === 'about' ? page.sections.flatMap(section => section.publications || []) : []);
+  const researchTopic = researchTopics.find(topic => topic.id === researchTopicId);
+  const showRelated = (topicId: string) => {
+    setResearchTopicId(topicId);
+    requestAnimationFrame(() => {
+      const heading = document.getElementById('home-publications-title');
+      heading?.focus({ preventScroll: true });
+      heading?.scrollIntoView({ block: 'start' });
+    });
+  };
 
   return (
     <div className="max-w-[800px] mx-auto px-5 sm:px-8 pb-8 bg-background min-h-screen">
@@ -89,6 +103,8 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
                           }}
                           publications={section.publications || []}
                           embedded={true}
+                          researchTopic={researchTopic}
+                          onAllPublications={() => setResearchTopicId(null)}
                         />
                       </div>
                     );
@@ -102,10 +118,12 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
                     );
                   case 'interests':
                     return (
-                      <ResearchInterests
+                      <ResearchFlow
                         key={section.id}
                         title={section.title}
                         content={section.content || ''}
+                        publications={allPublications}
+                        onRelated={showRelated}
                       />
                     );
                   case 'models':
@@ -125,6 +143,8 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
                   config={page.config}
                   publications={page.publications}
                   embedded={true}
+                  researchTopic={researchTopic}
+                  onAllPublications={() => setResearchTopicId(null)}
                 />
               )}
               {page.type === 'text' && (

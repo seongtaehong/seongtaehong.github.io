@@ -17,11 +17,13 @@ interface PublicationsListProps {
     config: PublicationPageConfig;
     publications: Publication[];
     embedded?: boolean;
+    researchTopic?: { label: string; paperIds: string[] };
+    onAllPublications?: () => void;
 }
 
 const filterButtonClass = 'shrink-0 whitespace-nowrap rounded-md px-1 py-1.5 text-[11px] leading-4 focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2';
 
-export default function PublicationsList({ config, publications, embedded = false }: PublicationsListProps) {
+export default function PublicationsList({ config, publications, embedded = false, researchTopic, onAllPublications }: PublicationsListProps) {
     const messages = useMessages();
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedYears, setSelectedYears] = useState<number[]>([]);
@@ -42,6 +44,7 @@ export default function PublicationsList({ config, publications, embedded = fals
     // Filter publications
     const filteredPublications = useMemo(() => {
         return publications.filter(pub => {
+            if (researchTopic) return researchTopic.paperIds.includes(pub.id);
             const matchesSearch =
                 pub.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 pub.authors.some(author => author.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
@@ -55,7 +58,7 @@ export default function PublicationsList({ config, publications, embedded = fals
 
             return matchesSearch && matchesYear && matchesVenue;
         });
-    }, [publications, searchQuery, selectedYears, selectedVenues, includeArxiv]);
+    }, [publications, searchQuery, selectedYears, selectedVenues, includeArxiv, researchTopic]);
 
     return (
         <motion.div
@@ -65,14 +68,14 @@ export default function PublicationsList({ config, publications, embedded = fals
         >
             <div className="mb-3 flex flex-col gap-3">
                 <div>
-                    <h1 className={`${embedded ? 'text-[22px]' : 'text-4xl'} font-serif font-bold text-primary`}>
+                    <h1 id={onAllPublications ? "home-publications-title" : undefined} tabIndex={onAllPublications ? -1 : undefined} className={`${embedded ? 'text-[22px]' : 'text-4xl'} font-serif font-bold text-primary scroll-mt-24`}>
                         {config.title}
                     </h1>
                     {config.description && (
                         <p className="mt-2 max-w-2xl text-sm text-neutral-600">{config.description}</p>
                     )}
                 </div>
-                <div className="relative w-full">
+                {!researchTopic && <div className="relative w-full">
                     <MagnifyingGlassIcon aria-hidden="true" className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500" />
                     <input
                         type="search"
@@ -82,10 +85,18 @@ export default function PublicationsList({ config, publications, embedded = fals
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="w-full rounded-lg border border-neutral-200 bg-background py-2 pr-3 pl-9 text-sm text-primary placeholder:text-neutral-500 focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
                     />
-                </div>
+                </div>}
+                {researchTopic && <div className="flex items-baseline justify-between gap-4 text-sm">
+                    <p role="status" className="rounded-full bg-[#427aa8] px-3 py-0.5 font-bold text-white">{researchTopic.label} · {filteredPublications.length} publications</p>
+                    <button type="button" className="text-accent hover:underline focus-visible:outline-2 focus-visible:outline-accent" onClick={() => {
+                        setSearchQuery(''); setSelectedYears([]); setSelectedVenues([]); setIncludeArxiv(true);
+                        onAllPublications?.();
+                        document.getElementById('home-publications-title')?.focus({ preventScroll: true });
+                    }}>All publications</button>
+                </div>}
             </div>
 
-            <div className="mb-5 flex flex-col gap-3 border-b border-neutral-200 pb-4 min-[900px]:flex-row min-[900px]:items-center min-[900px]:gap-4">
+            {!researchTopic && <div className="mb-5 flex flex-col gap-3 border-b border-neutral-200 pb-4 min-[900px]:flex-row min-[900px]:items-center min-[900px]:gap-4">
                 <div role="group" aria-label={messages.publications.year} className="flex shrink-0 items-center gap-2">
                     <span className="text-xs font-bold text-primary">{messages.publications.year}</span>
                     <div className="flex gap-0.5">
@@ -147,7 +158,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                         </button>
                     </div>
                 )}
-            </div>
+            </div>}
 
             {/* Publications Grid */}
             <div className="space-y-4">
