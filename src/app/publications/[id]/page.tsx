@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
   return {
     title: publication.title,
+    alternates: { canonical: `/publications/${publication.id}/` },
     description: publication.abstract || `${publication.title} by Seongtae Hong`,
   };
 }

@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
-import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { LocaleProvider } from '@/components/ui/LocaleProvider';
 import { getConfig } from '@/lib/config';
 import { getRuntimeI18nConfig } from '@/lib/i18n/config';
@@ -14,6 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const openGraphLocale = runtimeI18n.defaultLocale === 'zh' ? 'zh_CN' : 'en_US';
 
   return {
+    metadataBase: new URL(config.site.url),
     title: {
       default: config.site.title,
       template: `%s | ${config.site.title}`,
@@ -129,7 +129,7 @@ export default function RootLayout({
   } = buildLocalizedConfigMaps(targetLocales);
 
   return (
-    <html lang={runtimeI18n.defaultLocale} className="scroll-smooth" suppressHydrationWarning>
+    <html lang={runtimeI18n.defaultLocale} className="scroll-smooth light" data-theme="light" suppressHydrationWarning>
       <head>
         <link rel="icon" href={config.site.favicon} type="image/svg+xml" />
         <link rel="dns-prefetch" href="https://jialeliu.com" />
@@ -143,32 +143,11 @@ export default function RootLayout({
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                const theme = localStorage.getItem('theme-storage');
-                const parsed = theme ? JSON.parse(theme) : null;
-                const setting = parsed?.state?.theme || 'system';
-                const prefersDark = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const effective = setting === 'dark' ? 'dark' : (setting === 'light' ? 'light' : (prefersDark ? 'dark' : 'light'));
-                var root = document.documentElement;
-                root.classList.add(effective);
-                root.setAttribute('data-theme', effective);
-              } catch (e) {
-                var root = document.documentElement;
-                root.classList.add('light');
-                root.setAttribute('data-theme', 'light');
-              }
-            `,
-          }}
-        />
-        <script
-          dangerouslySetInnerHTML={{
             __html: buildLocaleBootstrapScript(runtimeI18n),
           }}
         />
       </head>
       <body className="font-sans antialiased">
-        <ThemeProvider>
           <LocaleProvider config={runtimeI18n}>
             <Navigation
               items={config.navigation}
@@ -187,7 +166,6 @@ export default function RootLayout({
               defaultLocale={runtimeI18n.defaultLocale}
             />
           </LocaleProvider>
-        </ThemeProvider>
       </body>
     </html>
   );

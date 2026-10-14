@@ -5,6 +5,7 @@ import type { I18nConfig } from '@/types/i18n';
 
 export interface SiteConfig {
   site: {
+    url: string;
     title: string;
     description: string;
     favicon: string;
@@ -12,6 +13,7 @@ export interface SiteConfig {
   };
   author: {
     name: string;
+    name_ko?: string;
     title: string;
     institution: string;
     avatar: string;

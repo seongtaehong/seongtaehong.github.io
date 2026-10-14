@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { getConfig } from '@/lib/config';
 import { getMarkdownContent, getBibtexContent, getTomlContent, getPageConfig } from '@/lib/content';
 import { parseBibTeX } from '@/lib/bibtexParser';
@@ -6,6 +7,20 @@ import { Publication } from '@/types/publication';
 import { BasePageConfig, PublicationPageConfig, TextPageConfig, CardPageConfig } from '@/types/page';
 import { getRuntimeI18nConfig } from '@/lib/i18n/config';
 import type { ModelItem } from '@/components/home/Models';
+
+export function generateMetadata(): Metadata {
+  const config = getConfig();
+  return {
+    title: { absolute: config.site.title },
+    alternates: { canonical: '/' },
+    openGraph: {
+      type: 'website',
+      title: config.site.title,
+      description: config.site.description,
+      url: '/',
+    },
+  };
+}
 
 interface SectionConfig {
   id: string;

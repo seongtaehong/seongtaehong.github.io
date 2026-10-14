@@ -1,11 +1,13 @@
 [site]
-title = "Seongtae Hong"
-description = "Academic homepage of Seongtae Hong, a Ph.D. student at Korea University."
+url = "https://seongtaehong.github.io"
+title = "Seongtae Hong (홍성태)"
+description = "Seongtae Hong (홍성태) is a Ph.D. student at Korea University researching multilingual NLP, information retrieval, reranking, and retrieval-augmented generation."
 favicon = "/favicon.svg"
 last_updated = "October 13, 2026"
 
 [author]
 name = "Seongtae Hong"
+name_ko = "홍성태"
 title = "Ph.D. Student"
 institution = "Korea University"
 avatar = "/bio.jpg"

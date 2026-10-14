@@ -28,6 +28,7 @@ export default function Profile({ author, social, bio }: ProfileProps) {
           />
         </div>
         <h1 className="mt-3 text-xl font-bold text-primary">{author.name}</h1>
+        {author.name_ko && <p lang="ko" className="mt-1 text-sm text-neutral-600">{author.name_ko}</p>}
       </div>
 
       <div className="flex-1 pt-1 text-left">
