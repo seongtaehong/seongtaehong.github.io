@@ -1,4 +1,8 @@
 [[news]]
+date = "2026-10"
+content = "We released [MixLID](https://huggingface.co/nlpai-lab/MixLID) for token-level language identification in mixed-language text, with its [paper](/publications/2026-mixlid-token-level-language-identification-mixed-language-text/)."
+
+[[news]]
 date = "2026-09"
 content = "Our paper MLAIRE is accepted to **NeurIPS 2026 E&D**!"
 
