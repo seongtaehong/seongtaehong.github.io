@@ -24,3 +24,10 @@ for (const url of urls) {
   assert.ok(html.includes(`<link rel="canonical" href="${url}"`), `Canonical: ${url}`);
 }
 console.log(`SEO/light checks passed: ${urls.length} canonical URLs, robots.txt, visible static content, light root.`);
+
+const mixlid = fs.readFileSync('out/publications/2026-mixlid-token-level-language-identification-mixed-language-text/index.html', 'utf8');
+assert.ok(mixlid.includes('https://arxiv.org/abs/2610.16601'));
+assert.ok(mixlid.includes('https://huggingface.co/nlpai-lab/MixLID'));
+for (const file of fs.readdirSync('public').filter(name => /^google.*\.html$/.test(name))) {
+  assert.equal(fs.readFileSync(`out/${file}`, 'utf8'), fs.readFileSync(`public/${file}`, 'utf8'));
+}

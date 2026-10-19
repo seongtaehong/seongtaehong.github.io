@@ -68,7 +68,8 @@ export const researchTopics = [
       "2026-query-synergy-leveraging-high-resource-languages",
       "2026-clear-cross-lingual-enhancement-retrieval-reverse",
       "2026-improving-semantic-proximity-english-centric-information",
-      "2024-translation-multifaceted-data-without-re-training"
+      "2024-translation-multifaceted-data-without-re-training",
+      "2026-mixlid-token-level-language-identification-mixed-language-text"
     ]
   },
   {

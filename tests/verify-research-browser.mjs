@@ -26,12 +26,12 @@ for(const [name,width,height] of [['desktop',1280,1000],['mobile',390,844]]){
  assert.equal(await evaluate(`document.querySelectorAll('.research-directions-title').length`),0);
  assert.ok(await evaluate(`!!([...document.querySelectorAll('h2')].find(h=>h.textContent==='News').compareDocumentPosition(document.querySelector('#research')) & Node.DOCUMENT_POSITION_FOLLOWING)`));
  await new Promise(r=>setTimeout(r,1000));
- assert.equal(await evaluate(`document.querySelectorAll('#publications h3').length`),32);
+ assert.equal(await evaluate(`document.querySelectorAll('#publications h3').length`),33);
  assert.ok(await evaluate(`!!document.querySelector('#publications input[type=search]')`));
  // A previous text search must not silently constrain a research-topic selection.
  await evaluate(`(()=>{const input=document.querySelector('#publications input');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(input,'SemBridge');input.dispatchEvent(new Event('input',{bubbles:true}));})()`);
  await waitFor(`document.querySelectorAll('#publications h3').length===1`);
- for(const [topic,count] of Object.entries({retrieval:11,reranking:2,generation:7,transfer:11,evaluation:5,inference:5})){
+ for(const [topic,count] of Object.entries({retrieval:11,reranking:2,generation:7,transfer:12,evaluation:5,inference:5})){
   await evaluate(`document.querySelector('#research-tab-${topic}').click()`);
   await pause();
   assert.equal(await evaluate(`document.querySelectorAll('#research-panel li').length`),2);
@@ -47,7 +47,7 @@ for(const [name,width,height] of [['desktop',1280,1000],['mobile',390,844]]){
   }
   assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth`));
   await evaluate(`[...document.querySelectorAll('#publications button')].find(b=>b.textContent==='All publications').click()`);
-  await waitFor(`document.querySelectorAll('#publications h3').length===32`);
+  await waitFor(`document.querySelectorAll('#publications h3').length===33`);
   assert.equal(await evaluate(`document.querySelector('#publications input[type=search]').value`),'');
  }
  await evaluate(`document.querySelector('#research-tab-retrieval').focus();document.querySelector('#research-tab-retrieval').dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}))`);
